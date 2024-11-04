@@ -10,11 +10,12 @@ const Nav = () => {
     const [providers, setProviders] = useState(null)
     const [toggleDropDown, settoggleDropDown] = useState(false)
     useEffect(() => {
-        const setProviders = async () => {
+        const setUpProviders = async () => {
             const response = await getProviders();
+            console.log("responseee" ,response)
             setProviders(response);
         }
-        setProviders()
+        setUpProviders()
     }, [])
 
     return (
@@ -32,7 +33,7 @@ const Nav = () => {
                 <p className="logo_text">Promptia</p>
             </Link>
 
-            {/* {alert(session?.user)} */}
+            
             {/* Desktop Navigation */}
             <div className="sm:flex hidden">
                 {session?.user ? (
@@ -74,6 +75,8 @@ const Nav = () => {
                 )}
             </div>
             {/* Mobile Navigation */}
+
+            {/* {alert(providers)} */}
 
             <div className="sm:hidden flex relative">
                 {session?.user ? (
