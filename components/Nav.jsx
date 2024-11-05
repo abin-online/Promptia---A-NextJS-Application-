@@ -6,13 +6,13 @@ import { useState, useEffect } from "react"
 import { signIn, signOut, useSession, getProviders } from 'next-auth/react';
 
 const Nav = () => {
-    const {data : session } = useSession()
+    const { data: session } = useSession()
     const [providers, setProviders] = useState(null)
     const [toggleDropDown, settoggleDropDown] = useState(false)
     useEffect(() => {
         const setUpProviders = async () => {
             const response = await getProviders();
-            console.log("responseee" ,response)
+            console.log("responseee", response)
             setProviders(response);
         }
         setUpProviders()
@@ -33,7 +33,7 @@ const Nav = () => {
                 <p className="logo_text">Promptia</p>
             </Link>
 
-            
+
             {/* Desktop Navigation */}
             <div className="sm:flex hidden">
                 {session?.user ? (
@@ -50,7 +50,7 @@ const Nav = () => {
 
                         <Link href="/profile">
                             <Image
-                                src="/assets/icons/profile-icon.png"
+                                src={session?.user.image}
                                 width={37}
                                 height={37}
                                 className="rounded-full"
@@ -82,7 +82,7 @@ const Nav = () => {
                 {session?.user ? (
                     <div className="flex cursor-pointer ">
                         <Image
-                            src="/assets/icons/profile-icon.png"
+                            src={session?.user.image}
                             width={37}
                             height={37}
                             className="rounded-full"
